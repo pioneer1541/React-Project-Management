@@ -14,7 +14,7 @@ const Modal = forwardRef(function ({ children, buttonCaption = "Close", ...props
     return createPortal(
         <dialog ref={dialogRef}  {...props} className="backdrop:bg-stone-900/90 p-4 rounded-md shadow-md">
             {children}
-            <form className="mt-4 text-right">
+            <form method="dialog" className="mt-4 text-right">
                 <Button>{buttonCaption}</Button>
             </form>
         </dialog>, document.getElementById("modal-root")

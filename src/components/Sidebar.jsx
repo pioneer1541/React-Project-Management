@@ -14,13 +14,13 @@ export default function SideBar({ selectedProject, projectList, onPageChangeTo }
       </div>
       <ul className="mt-8">
         {projectList.map((project) => (
-          <li className={selectedProject === project.id ? cssClasses + " bg-stone-800 text-stone-200" : cssClasses + " text-stone-400"} key={project.id}>
+          <li className={selectedProject === project.id ? cssClasses + " bg-stone-800 text-stone-200" : cssClasses + " text-stone-400"} key={project.id + project.projectName}>
             <button onClick={() => {
               onPageJump(project.id)
             }}>{project.projectName}</button>
           </li>
         ))}
       </ul>
-    </aside>
+    </aside >
   );
 }
