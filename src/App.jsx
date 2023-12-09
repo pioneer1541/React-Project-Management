@@ -13,7 +13,7 @@ function App() {
   }
 
   function updateSelectedProjectIndex() {
-    pageState.projects.findIndex((project) => project.id === pageState.selectedProject);
+    selectedProjectIndex = pageState.projects.findIndex((project) => project.id === pageState.selectedProject);
   }
 
 
