@@ -1,6 +1,9 @@
+import { useContext } from 'react';
+import { ProjectContext } from '../store/project-context';
 import noProjectImage from '../assets/no-projects.png';
 import Button from './Button';
-export default function NoProjectSelected({ onPageChangeTo }) {
+export default function NoProjectSelected({ }) {
+    const { onPageChangeTo } = useContext(ProjectContext);
     return (
         <div className="mt-4 text-center w-2/3">
             <img className="w-16 h-16 object-contain mx-auto" src={noProjectImage} alt="No Project Selected" />

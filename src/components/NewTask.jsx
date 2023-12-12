@@ -1,6 +1,8 @@
-import { useState } from 'react';
-export default function NewTask({ onNewTaskAdd }) {
+import { useContext, useState } from 'react';
+import { ProjectContext } from '../store/project-context';
+export default function NewTask({ }) {
     const [newTask, setNewTask] = useState("")
+    const { onNewTaskAdd } = useContext(ProjectContext);
     function handleNewTaskChange(event) {
         setNewTask(event.target.value);
     }

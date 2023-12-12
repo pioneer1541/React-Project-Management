@@ -1,23 +1,25 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
+import { ProjectContext } from "../store/project-context";
 
+import Error from "../components/Modal/Error";
 import Input from "./Input";
-import Modal from "./Modal";
-export default function NewProject({ onPageChangeTo, projectList }) {
+export default function NewProject({ }) {
     const projectNameRef = useRef();
     const projectDescriptionRef = useRef();
     const projectDueDateRef = useRef();
-    const modalRef = useRef();
+    const errorRef = useRef();
     const [errorMeassage, setErrorMeassage] = useState("")
+    const { onPageChangeTo, projects } = useContext(ProjectContext);
     function handleSaveProject() {
         const newProject = {
-            id: projectList.length,
+            id: projects.length,
             projectName: projectNameRef.current.value,
             description: projectDescriptionRef.current.value,
             dueDate: projectDueDateRef.current.value,
             tasks: []
         };
         if (!checkIfInputValid(newProject)) {
-            modalRef.current.open();
+            errorRef.current.open();
             return;
         }
         handleAddProject(newProject);
@@ -25,7 +27,7 @@ export default function NewProject({ onPageChangeTo, projectList }) {
 
     function handleAddProject(newProject) {
 
-        onPageChangeTo(newProject.id, [...projectList, newProject]);
+        onPageChangeTo(newProject.id, [...projects, newProject]);
     }
 
     function checkIfInputValid(newProject) {
@@ -50,7 +52,7 @@ export default function NewProject({ onPageChangeTo, projectList }) {
 
     return (
         <>
-            <Modal ref={modalRef} ><h2 className="text-xl font-bold text-stone-900 my-4">{errorMeassage}</h2></Modal>
+            <Error ref={errorRef} message={errorMeassage} ></Error>
             <div className="w-[35rem] mt-16">
                 <menu className="flex items-center justify-end gap-4 my-4">
                     <li><button onClick={() => { onPageChangeTo(undefined) }} className="text-stone-800 hover:text-stone-950">Cancel</button></li>
